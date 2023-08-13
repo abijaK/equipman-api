@@ -4,7 +4,7 @@ import cors from 'cors';
 import sequelizeConfig from './config/db.config.js';
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 2024;
 sequelizeConfig.testDbConnection();
 
 //Setup an ORM config
