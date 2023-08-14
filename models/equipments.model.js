@@ -1,17 +1,15 @@
-import { Sequelize, DataTypes } from 'sequelize';
+import { sq, DataTypes } from 'sequelize';
 
-module.exports = (sequelize, DataTypes) => {
-    const equipment = sequelize.define('Equipment', {
+sq.define('Equipment', {
         designation: DataTypes.STRING,
         model: DataTypes.STRING,
         marque: DataTypes.STRING,
         category: DataTypes.STRING,
         description: DataTypes.STRING,
-        dateAcquisition: {
+        dateAquisition: {
             type: DataTypes.DATETIME,
             default: DataTypes.NOW
         }
     });
 
-    return equipment;
-}
+    export { Equipment }
