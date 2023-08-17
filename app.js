@@ -1,11 +1,12 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import sequelizeConfig from './config/db.config.js';
+// import sqConfig from './config/db.config.js';
+import { user } from './models/users.models.js'
 
 const app = express();
 const PORT = process.env.PORT || 2024;
-sequelizeConfig.testDbConnection();
+// sqConfig.sequelize();
 
 //Setup an ORM config
 
@@ -14,7 +15,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false}));
 
 app.get('/', async(req, res) => {
-    res.json({ status: true, message: 'Hello Word !'})
+    await User.findAll()
 });
 
 app.listen(PORT, () => console.log(`App listening at port ${PORT}`));

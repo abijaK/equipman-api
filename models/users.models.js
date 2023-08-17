@@ -1,11 +1,37 @@
-import { sq, DataTypes } from 'sequelize';
+import { DataTypes } from 'sequelize';
+import sequelize from '../config/db.config.js'
 
-sq.define('User', {
-      name: DataTypes.STRING,
-      username: DataTypes.STRING,
-      email: DataTypes.STRING,
-      password: DataTypes.STRING,
-      telephone: DataTypes.STRING
+export const user = sequelize.define('user', {
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: DataTypes.INTEGER
+      },
+      firstName:{
+        type:DataTypes.STRING,
+        allowNull: false
+      } ,
+      lastName: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      email: {
+        type: DataTypes.STRING,
+        unique: true,
+        allowNull:false
+      },
+      password: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      telephone: {
+        type: DataTypes.STRING,
+        allowNull: false
+      }
+    },{
+      // forbides userModal name to be pluralized
+        freezeTableName: true
     });
-
-export { User };
+    // Allow to create user table
+    sequelize.sync();
