@@ -1,14 +1,18 @@
-import { sq, DataTypes } from 'sequelize';
+import sequelize from '../config/db.config.js';
 
-sq.define('Maintenance', {
+export const maintenance = sequelize.define('maintenance', {
+    id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+      },
         motif: DataTypes.STRING,
         operateur: DataTypes.STRING,
         description: DataTypes.STRING,
-        idAffectation: DataTypes.INTEGER,
+        idAffectationFk: DataTypes.INTEGER,
         date: {
             type: DataTypes.DATETIME,
             default: DataTypes.NOW
         }
     });
-
-    export { Maintenance }

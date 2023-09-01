@@ -1,6 +1,12 @@
-import { sq, DataTypes } from 'sequelize';
+import sequelize from '../config/db.config.js';
 
-    sq.define('Year', {
+    sequelize.define('year', {
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: DataTypes.INTEGER
+      },
       year: DataTypes.DATEONLY
     });
 

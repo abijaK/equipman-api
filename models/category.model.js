@@ -1,7 +1,11 @@
-import { sq, DataTypes } from 'sequelize';
+import sequelize from '../config/db.config.js';
 
-    sq.define('Category', {
+    export const category = sequelize.define('category', {
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: DataTypes.INTEGER
+      },
       designation: DataTypes.STRING
     });
-
-export { Category };

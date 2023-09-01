@@ -1,6 +1,12 @@
-import { sq, DataTypes } from 'sequelize';
+import sequelize from '../config/db.config.js';
 
-sq.define('Equipment', {
+export const equipment = sequelize.define('equipment', {
+    id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: DataTypes.INTEGER
+      },
         designation: DataTypes.STRING,
         model: DataTypes.STRING,
         marque: DataTypes.STRING,
@@ -11,5 +17,3 @@ sq.define('Equipment', {
             default: DataTypes.NOW
         }
     });
-
-    export { Equipment }

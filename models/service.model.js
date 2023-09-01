@@ -1,7 +1,12 @@
-import { sq, DataTypes } from 'sequelize';
+import { DataTypes } from 'sequelize';
+import sequelize from '../config/db.config.js';
 
-    sq.define('Service', {
-      designation: DataTypes.STRING
+export const service = sequelize.define('service', {
+  id: {
+    allowNull: false,
+    autoIncrement: true,
+    primaryKey: true,
+    type: DataTypes.INTEGER
+  },
+   designation: DataTypes.STRING
     });
-
-export { Service };

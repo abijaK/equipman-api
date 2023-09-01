@@ -2,7 +2,8 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 // import sqConfig from './config/db.config.js';
-import { user } from './models/users.models.js'
+// import { user } from './models/users.models.js'
+import { routes } from './routes/routes.js';
 
 const app = express();
 const PORT = process.env.PORT || 2024;
@@ -11,11 +12,12 @@ const PORT = process.env.PORT || 2024;
 //Setup an ORM config
 
 app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false}));
+// app.use(bodyParser.json());
+app.use(express.json());
+app.use(express.urlencoded({ extended: false}));
 
-app.get('/', async(req, res) => {
-    await User.findAll()
-});
+app.use('/', routes);
+
+// app.use('/equip', routes)
 
 app.listen(PORT, () => console.log(`App listening at port ${PORT}`));

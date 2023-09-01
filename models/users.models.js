@@ -1,5 +1,6 @@
 import { DataTypes } from 'sequelize';
-import sequelize from '../config/db.config.js'
+import sequelize from '../config/db.config.js';
+
 
 export const user = sequelize.define('user', {
       id: {
@@ -11,7 +12,7 @@ export const user = sequelize.define('user', {
       firstName:{
         type:DataTypes.STRING,
         allowNull: false
-      } ,
+      },
       lastName: {
         type: DataTypes.STRING,
         allowNull: false
@@ -28,10 +29,16 @@ export const user = sequelize.define('user', {
       telephone: {
         type: DataTypes.STRING,
         allowNull: false
-      }
+      },
+      active: sequelize.Sequelize.BOOLEAN,
+      admin: sequelize.Sequelize.BOOLEAN
     },{
       // forbides userModal name to be pluralized
-        freezeTableName: true
+        freezeTableName: true,
+        
+        timestamps: false,
+        createdAt: false,
+        updatedAt: false,
     });
     // Allow to create user table
     sequelize.sync();

@@ -1,16 +1,20 @@
-import { sq, DataTypes } from 'sequelize';
+import sequelize from '../config/db.config.js';
 
-sq.define('Affectation', {
-    state: DataTypes.BOOLEAN,
-    idEquipFk: DataTypes.INTEGER,
-    description: DataTypes.STRING,
-    idServiceFk: DataTypes.INTEGER,
-    amortizationPeriod: DataTypes.INTEGER,
-    yearAffectation: DataTypes.DATEONLY,
+export const affectation = sequelize.define('affectation', {
+    id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: DataTypes.INTEGER
+      },
+    state: { type: DataTypes.BOOLEAN},
+    idEquipFk: { type: DataTypes.INTEGER},
+    description: { type: DataTypes.STRING},
+    idServiceFk: { type: DataTypes.INTEGER},
+    amortizationPeriod: { type: DataTypes.INTEGER},
+    yearAffectation: { type: DataTypes.DATEONLY},
     dateAffectation: {
         type: DataTypes.DATETIME,
         default: DataTypes.NOW
     }
 });
-
-    export { Affectation }
