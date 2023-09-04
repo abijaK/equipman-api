@@ -3,10 +3,10 @@ import { user } from '../models/users.models.js';
 
 export const routes = express.Router();
 
-routes.get('/', (req, res) => res.send('Welcome!'))
+routes.get('/', (req, res) => res.send('Welcome to Home Page!'))
 
-// Get users
-routes.get('/api/users', async(req, res) => {
+// Get all users
+routes.get('/users/list', async(req, res) => {
     await user.findAll()
     .then(user =>{ 
         console.log(user)
@@ -17,7 +17,7 @@ routes.get('/api/users', async(req, res) => {
  })
 
 //  Get user by id
-routes.get('/api/users/:id', async(req, res) => {
+routes.get('/users/:id', async(req, res) => {
     const one = await user.findOne({ where: { id: req.params.id } });
     
     if (one === null) {
@@ -29,7 +29,7 @@ routes.get('/api/users/:id', async(req, res) => {
     }
 })
 //  Create user
-routes.post('/add/user', async(req, res) =>{
+routes.post('/users/add', async(req, res) =>{
 
     let user_info = { 
         firstName: req.body.firstName,
@@ -56,7 +56,7 @@ routes.post('/add/user', async(req, res) =>{
 })
 
 // Update user by id
-routes.put('/api/users/:id', async(req, res) => {
+routes.put('/users/:id/update', async(req, res) => {
     const one = await user.update(req.body, { where: { id: req.params.id } });
     
     if (one === null) {
@@ -69,7 +69,7 @@ routes.put('/api/users/:id', async(req, res) => {
 })
 
 // Delete user by id
-routes.delete('/api/users/:id', async(req, res) => {
+routes.delete('/users/:id/delete', async(req, res) => {
     const one = await user.destroy({ where: { id: req.params.id } });
     
     if (one === null) {
