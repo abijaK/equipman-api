@@ -8,7 +8,7 @@ routes.get('/', (req, res) => res.send('Welcome!'))
 
 // Get users
 routes.get('/api/users', async(req, res) => {
-    const users =  await user.findAll()
+    await user.findAll()
     .then(user =>{ 
         console.log(user)
         res.status(200)
@@ -18,14 +18,24 @@ routes.get('/api/users', async(req, res) => {
  })
 
 //  Get user
-routes.get('/api/users/:userID', async(req, res) => {
-    const id = Number(req.params.params.userID)
-    const user = user.find(user => user.id === id)
-    console.log(id);
-    console.log(user);
-    res.send(user);
- })
+// routes.get('/api/users/:id', async(req, res) => {
+//     const id = (req.params.id)
+//     const oneUser = await user.findOne({ 
+//         where: { id: id }})
+//         res.status(200).send(oneUser);
+//  })
 
+routes.get('/api/users/:id', async(req, res) => {
+    const one = await user.findOne({ where: { id: req.params.id } });
+    
+    if (one === null) {
+        console.log('Not found!');
+    } else {
+        console.log(one instanceof user); // true
+        console.log(one); // 'My Title'
+        res.status(200).send(one)
+    }
+})
 //  Create user
 routes.post('/add/user', async(req, res) =>{
 
