@@ -10,3 +10,5 @@ export const service = sequelize.define('service', {
   },
    designation: DataTypes.STRING
     });
+
+    // service.belongsTo(equipment);

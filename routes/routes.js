@@ -9,8 +9,10 @@ routes.get('/', (req, res) => res.send('Welcome!'))
 // Get users
 routes.get('/api/users', async(req, res) => {
     const users =  await user.findAll()
-    .then(user =>{ console.log(user)
-        res.sendStatus(200)
+    .then(user =>{ 
+        console.log(user)
+        res.status(200)
+        res.send(user)
     })
     .catch(err => console.log(err))
  })
@@ -41,7 +43,7 @@ routes.post('/add/user', async(req, res) =>{
         await user.create(user_info)
         .then((use) => res.status(201).send(use))
          
-        await user.save()
+        // await user.save()
         console.log(req.body);
 
         // return user

@@ -1,5 +1,6 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../config/db.config.js';
+import {service} from './service.model.js'
 
 
 export const user = sequelize.define('user', {
@@ -40,5 +41,10 @@ export const user = sequelize.define('user', {
         createdAt: false,
         updatedAt: false,
     });
+    user.hasOne(service, {
+      foreignKey: 'serviceFk'
+    });
+    service.belongsTo(user);
+    
     // Allow to create user table
     sequelize.sync();

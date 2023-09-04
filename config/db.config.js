@@ -20,6 +20,11 @@ const sequelize = new Sequelize(process.env.POSTGRESQL_DB_URI,
 
 export default sequelize;
 
+// Allows to update the schema without losing existing data
 (async () => {
     await sequelize.sync({alter: true})()
 })
+
+// Prevents losing existing data when server is running
+sequelize.sync({ force: false })
+.then(() => console.log('Right, re-sync done!'));
