@@ -1,6 +1,5 @@
 import express from "express";
 import { user } from '../models/users.models.js';
-// import { createUser } from "../controllers/user.ctrl.js";
 
 export const routes = express.Router();
 
@@ -17,14 +16,7 @@ routes.get('/api/users', async(req, res) => {
     .catch(err => console.log(err))
  })
 
-//  Get user
-// routes.get('/api/users/:id', async(req, res) => {
-//     const id = (req.params.id)
-//     const oneUser = await user.findOne({ 
-//         where: { id: id }})
-//         res.status(200).send(oneUser);
-//  })
-
+//  Get user by id
 routes.get('/api/users/:id', async(req, res) => {
     const one = await user.findOne({ where: { id: req.params.id } });
     
@@ -32,7 +24,7 @@ routes.get('/api/users/:id', async(req, res) => {
         console.log('Not found!');
     } else {
         console.log(one instanceof user); // true
-        console.log(one); // 'My Title'
+        console.log(one); // select user
         res.status(200).send(one)
     }
 })
@@ -60,5 +52,30 @@ routes.post('/add/user', async(req, res) =>{
     } catch(error){
         console.log(error);
         res.status(400).send(error);
+    }
+})
+
+// Update user by id
+routes.put('/api/users/:id', async(req, res) => {
+    const one = await user.update(req.body, { where: { id: req.params.id } });
+    
+    if (one === null) {
+        console.log('Not found!');
+    } else {
+        console.log(one instanceof user); // true
+        console.log(one); // select user
+        res.status(200).send(one)
+    }
+})
+
+// Delete user by id
+routes.delete('/api/users/:id', async(req, res) => {
+    const one = await user.destroy({ where: { id: req.params.id } });
+    
+    if (one === null) {
+        console.log('Not found!');
+    } else {
+        res.status(200);
+        console.log('User deleted successfully!');
     }
 })
