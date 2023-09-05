@@ -3,11 +3,11 @@ import { controller } from '../controllers/equipments.ctrl.js'
 
 const router = express.Router();
 
-router.get('/addEquip', controller.addEquipment)
-router.get('/allEquip', controller.addAllEquipments)
-router.get('/:id', controller.getOneEquipment)
+router.post('/equip/create', controller.addEquipment)
+router.get('/equip/list', controller.getAllEquipments)
+router.get('/equip/:id', controller.getOneEquipment)
 
-router.put('/:id', controller.updateEquipment)
-router.delete('/:id', controller.deleteEquipment)
+router.put('/equip/:id/update', controller.updateEquipment)
+router.delete('/equip/:id/delete', controller.deleteEquipment)
 
 exports = router;

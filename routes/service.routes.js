@@ -3,11 +3,11 @@ import { controller } from '../controllers/services.ctrl.js'
 
 const router = express.Router();
 
-router.get('/addService', controller.addService)
-router.get('/allServices', controller.addAllServices)
-router.get('/:id', controller.getOneService)
+router.get('/service/create', controller.addService)
+router.get('/service/list', controller.getAllServices)
+router.get('/service/:id', controller.getOneService)
 
-router.put('/:id', controller.updateService)
-router.delete('/:id', controller.deleteService)
+router.put('/service/:id/update', controller.updateService)
+router.delete('/service/:id/delete', controller.deleteService)
 
 exports = router;

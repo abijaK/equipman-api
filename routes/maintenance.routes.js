@@ -3,11 +3,11 @@ import { controller } from '../controllers/maintenance.ctrl.js'
 
 const router = express.Router();
 
-router.get('/addMaintenance', controller.addMaintenance)
-router.get('/allServices', controller.addAllMaintenances)
-router.get('/:id', controller.getOneMaintenance)
+router.get('/maintenance/create', controller.addMaintenance)
+router.get('/maintenance/list', controller.getAllMaintenances)
+router.get('/maintenance/:id', controller.getOneMaintenance)
 
-router.put('/:id', controller.updateMaintenance)
-router.delete('/:id', controller.deleteMaintenance)
+router.put('/maintenance/:id/update', controller.updateMaintenance)
+router.delete('/maintenance/:id/delete', controller.deleteMaintenance)
 
 exports = router;
